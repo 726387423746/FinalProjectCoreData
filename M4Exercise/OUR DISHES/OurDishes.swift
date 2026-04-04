@@ -57,6 +57,16 @@ struct OurDishes: View {
             
         }
     }
+    func buildPredicate() -> NSPredicate {
+        if searchText.isEmpty {
+            return NSPredicate(format: "TRUEPREDICATE")
+        }
+        return NSPredicate(format: "name CONTAINS[cd] %@", searchText)
+    }
+    
+    func buildSortDescriptors() -> [NSSortDescriptor] {
+        return [NSSortDescriptor(key: "name", ascending: true)]
+    }
 }
 
 struct OurDishes_Previews: PreviewProvider {
