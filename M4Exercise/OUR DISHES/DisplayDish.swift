@@ -1,10 +1,4 @@
-//
-// DisplayDish.swift
-
-
-
 import SwiftUI
-
 
 struct DisplayDish: View {
     @ObservedObject private var dish:Dish
@@ -12,9 +6,17 @@ struct DisplayDish: View {
         self.dish = dish
     }
     
-    var body: some View {        
-        EmptyView()
-        .contentShape(Rectangle()) // keep this code
+    var body: some View {
+        HStack(spacing: 15) {
+            Text(dish.name!)
+            Spacer()
+            Text(dish.formatPrice())
+                .font(.callout)
+                .monospacedDigit()
+        }
+        .bold()
+        .padding(20)
+        .contentShape(Rectangle())
     }
 }
 

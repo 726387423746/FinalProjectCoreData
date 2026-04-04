@@ -29,9 +29,14 @@ struct OurDishes: View {
                     sortDescriptors: buildSortDescriptors()) {
                         (dishes: [Dish]) in
                         List {
-                            // Code for the list enumeration here
+                            ForEach(dishes) { dish in
+                                DisplayDish(dish)
+                                    .onTapGesture {
+                                        showAlert = true
+                                    }
+                            }
                         }
-                        // add the search bar modifier here
+                        .searchable(text: $searchText)
                     }
             }
             
@@ -65,7 +70,9 @@ struct OurDishes: View {
     }
     
     func buildSortDescriptors() -> [NSSortDescriptor] {
-        return [NSSortDescriptor(key: "name", ascending: true)]
+        return [NSSortDescriptor(key: "name",
+                                 ascending: true,
+                                 selector: #selector(NSString.localizedStandardCompare(_:)))]
     }
 }
 
