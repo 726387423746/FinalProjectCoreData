@@ -1,12 +1,12 @@
 import Foundation
 
 struct JSONMenu: Codable {
-    // add code here
+    var menu: [MenuItem]
 }
 
 
-struct MenuItem: Codable, Identifiable {
+struct MenuItem: Codable, Hashable, Identifiable {
     let id = UUID()
-    
-    // add code here
+    var title: String
+    var price: String
 }
