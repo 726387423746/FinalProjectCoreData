@@ -17,8 +17,8 @@ class DishesModel: ObservableObject {
             let fullMenu = try JSONDecoder().decode(JSONMenu.self, from: data)
             menuItems = fullMenu.menu
             
-            // populate Core Data
             Dish.deleteAll(coreDataContext)
+            coreDataContext.reset()
             Dish.createDishesFrom(menuItems:menuItems, coreDataContext)
         }
         catch { }

@@ -8,11 +8,12 @@ struct DisplayDish: View {
     
     var body: some View {
         HStack(spacing: 15) {
-            Text(dish.name!)
+            Text(dish.name ?? "")
             Spacer()
             Text(dish.formatPrice())
                 .font(.callout)
                 .monospacedDigit()
+                .frame(width: 70, alignment: .leading)
         }
         .bold()
         .padding(20)
